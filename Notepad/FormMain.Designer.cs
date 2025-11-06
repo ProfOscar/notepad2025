@@ -108,6 +108,7 @@
             this.rtbMain.Size = new System.Drawing.Size(800, 404);
             this.rtbMain.TabIndex = 2;
             this.rtbMain.Text = "";
+            this.rtbMain.TextChanged += new System.EventHandler(this.rtbMain_TextChanged);
             // 
             // fileToolStripMenuItem
             // 
@@ -458,6 +459,7 @@
             this.MainMenuStrip = this.menuStripTop;
             this.Name = "FormMain";
             this.Text = "Blocco note di Windows";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripTop.ResumeLayout(false);
             this.menuStripTop.PerformLayout();
             this.ResumeLayout(false);
