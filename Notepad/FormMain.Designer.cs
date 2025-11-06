@@ -454,6 +454,7 @@
             this.Controls.Add(this.rtbMain);
             this.Controls.Add(this.statusStripBottom);
             this.Controls.Add(this.menuStripTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripTop;
             this.Name = "FormMain";
             this.Text = "Blocco note di Windows";
