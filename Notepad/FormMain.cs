@@ -8,7 +8,7 @@ namespace Notepad
         const string PROGRAM_NAME = "Blocco note di Windows";
 
         string fileName = "Senza nome";
-        string lastContentSaved = "";
+        string lastSavedContent = "";
         bool isEdited = false;
 
         public FormMain()
@@ -23,8 +23,36 @@ namespace Notepad
 
         private void rtbMain_TextChanged(object sender, System.EventArgs e)
         {
-            isEdited = rtbMain.Text != lastContentSaved;
+            isEdited = rtbMain.Text != lastSavedContent;
             SetFormTitle();
+        }
+
+        private void nuovoToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (rtbMain.Text == lastSavedContent)
+            {
+                // non ci sono modifiche da salvare
+                rtbMain.Text = "";
+            }
+            else
+            {
+                // chiedo all'utente se vuole salvare
+                DialogResult result = MessageBox.Show(
+                    $"Salvare le modifiche a {fileName}?",
+                    PROGRAM_NAME,
+                    MessageBoxButtons.YesNoCancel);
+                switch ( result )
+                {
+                    case DialogResult.Yes:
+                        // salvo
+                        MessageBox.Show("Salvo");
+                        break;
+                    case DialogResult.No:
+                        // non salvo
+                        MessageBox.Show("Non salvo");
+                        break;
+                }
+            }
         }
 
         private void SetFormTitle()
