@@ -54,7 +54,7 @@ namespace Notepad
                     PROGRAM_NAME,
                     MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Cancel) return;
-                if (result == DialogResult.Yes) Salva(); // fa "salva con nome"
+                if (result == DialogResult.Yes) SalvaFile(filePath == ""); // fa "salva con nome"
                 Reset();
             }
         }
@@ -67,7 +67,7 @@ namespace Notepad
 
         private void salvaconnomeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            Salva();
+            SalvaFile(true);
         }
 
         /// <summary>
@@ -76,11 +76,10 @@ namespace Notepad
         /// </summary>
         /// <param name="filePath">Il percorso del file da salvare 
         /// (se vuoto apre saveFileDialog)</param>
-        private void Salva(string filePath = "")
+        private void SalvaFile(bool isSalvaConNome = false)
         {
-            if (filePath == "")
+            if (isSalvaConNome)
             {
-                // è un salva con nome
                 if (saveFileDialogMain.ShowDialog() == DialogResult.OK)
                     filePath = saveFileDialogMain.FileName;
                 else
@@ -95,6 +94,11 @@ namespace Notepad
             lastSavedContent = rtbMain.Text;
             isEdited = false;
             SetFormTitle();
+        }
+
+        private void salvaToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            SalvaFile(filePath == "");
         }
     }
 }
