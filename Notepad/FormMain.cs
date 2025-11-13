@@ -8,10 +8,10 @@ namespace Notepad
         const string EDITED_MARKER = "*";
         const string PROGRAM_NAME = "Blocco note di Windows";
 
-        string filePath = "";
-        string fileName = "Senza nome";
-        string lastSavedContent = "";
-        bool isEdited = false;
+        string filePath;
+        string fileName;
+        string lastSavedContent;
+        bool isEdited;
 
         public FormMain()
         {
@@ -20,6 +20,16 @@ namespace Notepad
 
         private void FormMain_Load(object sender, System.EventArgs e)
         {
+            Reset();
+        }
+
+        private void Reset()
+        {
+            filePath = "";
+            fileName = "Senza nome";
+            lastSavedContent = "";
+            isEdited = false;
+            rtbMain.Text = "";
             SetFormTitle();
         }
 
@@ -34,7 +44,7 @@ namespace Notepad
             if (rtbMain.Text == lastSavedContent)
             {
                 // non ci sono modifiche da salvare
-                rtbMain.Text = "";
+                Reset();
             }
             else
             {
@@ -43,21 +53,9 @@ namespace Notepad
                     $"Salvare le modifiche a {fileName}?",
                     PROGRAM_NAME,
                     MessageBoxButtons.YesNoCancel);
-                switch ( result )
-                {
-                    case DialogResult.Yes:
-                        // salvo
-                        MessageBox.Show("Salvo");
-                        rtbMain.Text = "";
-                        SetFormTitle();
-                        break;
-                    case DialogResult.No:
-                        // non salvo
-                        MessageBox.Show("Non salvo");
-                        rtbMain.Text = "";
-                        SetFormTitle();
-                        break;
-                }
+                if (result == DialogResult.Cancel) return;
+                if (result == DialogResult.Yes) Salva(); // fa "salva con nome"
+                Reset();
             }
         }
 
@@ -69,18 +67,34 @@ namespace Notepad
 
         private void salvaconnomeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            if ( saveFileDialogMain.ShowDialog() == DialogResult.OK )
+            Salva();
+        }
+
+        /// <summary>
+        /// Salve il contenuto del RichTextBox su filePath se non è stringa vuote,
+        /// altrimenti apre una SaveFileDialog
+        /// </summary>
+        /// <param name="filePath">Il percorso del file da salvare 
+        /// (se vuoto apre saveFileDialog)</param>
+        private void Salva(string filePath = "")
+        {
+            if (filePath == "")
             {
-                filePath = saveFileDialogMain.FileName;
-                fileName = Path.GetFileName(filePath);
-                using ( var writer = new StreamWriter(filePath) )
-                {
-                    writer.Write(rtbMain.Text);
-                }
-                lastSavedContent = rtbMain.Text;
-                isEdited = false;
-                SetFormTitle();
+                // è un salva con nome
+                if (saveFileDialogMain.ShowDialog() == DialogResult.OK)
+                    filePath = saveFileDialogMain.FileName;
+                else
+                    return;
             }
+            // salva il contenuto del richtextbox su filePath
+            fileName = Path.GetFileName(filePath);
+            using (var writer = new StreamWriter(filePath))
+            {
+                writer.Write(rtbMain.Text);
+            }
+            lastSavedContent = rtbMain.Text;
+            isEdited = false;
+            SetFormTitle();
         }
     }
 }
