@@ -55,6 +55,14 @@ namespace Notepad
             }
         }
 
+        private void rtbMain_SelectionChanged(object sender, EventArgs e)
+        {
+            copiaToolStripMenuItem.Enabled =
+            tagliaToolStripMenuItem.Enabled =
+            eliminaToolStripMenuItem.Enabled =
+                rtbMain.SelectionLength > 0;
+        }
+
         #endregion
 
         #region voci_di_menu
@@ -114,12 +122,55 @@ namespace Notepad
             Close();
         }
 
+        private void annullaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rtbMain.CanRedo)
+                rtbMain.Redo();
+            else
+                rtbMain.Undo();
+        }
+
+        private void tagliaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.Cut();
+        }
+
+        private void copiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.Copy();
+        }
+
+        private void incollaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eliminaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.SelectedText = "";
+        }
+
+        private void selezionatuttoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.SelectAll();
+        }
+
+        private void oraDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.SelectedText = DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+        }
+
         #endregion
 
         #region funzioni_helper
 
         private void Reset()
         {
+            copiaToolStripMenuItem.Enabled =
+            tagliaToolStripMenuItem.Enabled =
+            eliminaToolStripMenuItem.Enabled =
+                rtbMain.SelectionLength > 0;
+
             filePath = "";
             fileName = "Senza nome";
             lastSavedContent = "";

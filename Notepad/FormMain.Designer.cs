@@ -220,6 +220,7 @@
             this.annullaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.annullaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.annullaToolStripMenuItem.Text = "&Annulla";
+            this.annullaToolStripMenuItem.Click += new System.EventHandler(this.annullaToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -234,6 +235,7 @@
             this.tagliaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.tagliaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.tagliaToolStripMenuItem.Text = "&Taglia";
+            this.tagliaToolStripMenuItem.Click += new System.EventHandler(this.tagliaToolStripMenuItem_Click);
             // 
             // copiaToolStripMenuItem
             // 
@@ -243,6 +245,7 @@
             this.copiaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copiaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.copiaToolStripMenuItem.Text = "&Copia";
+            this.copiaToolStripMenuItem.Click += new System.EventHandler(this.copiaToolStripMenuItem_Click);
             // 
             // incollaToolStripMenuItem
             // 
@@ -252,6 +255,7 @@
             this.incollaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.incollaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.incollaToolStripMenuItem.Text = "I&ncolla";
+            this.incollaToolStripMenuItem.Click += new System.EventHandler(this.incollaToolStripMenuItem_Click);
             // 
             // eliminaToolStripMenuItem
             // 
@@ -259,6 +263,7 @@
             this.eliminaToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.eliminaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.eliminaToolStripMenuItem.Text = "E&limina";
+            this.eliminaToolStripMenuItem.Click += new System.EventHandler(this.eliminaToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -318,6 +323,7 @@
             this.selezionatuttoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.selezionatuttoToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.selezionatuttoToolStripMenuItem.Text = "Sele&ziona tutto";
+            this.selezionatuttoToolStripMenuItem.Click += new System.EventHandler(this.selezionatuttoToolStripMenuItem_Click);
             // 
             // oraDataToolStripMenuItem
             // 
@@ -325,6 +331,7 @@
             this.oraDataToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.oraDataToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.oraDataToolStripMenuItem.Text = "Ora/&Data";
+            this.oraDataToolStripMenuItem.Click += new System.EventHandler(this.oraDataToolStripMenuItem_Click);
             // 
             // formatoToolStripMenuItem
             // 
@@ -453,6 +460,7 @@
             this.rtbMain.Size = new System.Drawing.Size(800, 404);
             this.rtbMain.TabIndex = 2;
             this.rtbMain.Text = "";
+            this.rtbMain.SelectionChanged += new System.EventHandler(this.rtbMain_SelectionChanged);
             this.rtbMain.TextChanged += new System.EventHandler(this.rtbMain_TextChanged);
             // 
             // saveFileDialogMain
