@@ -76,11 +76,14 @@ namespace Notepad
         /// </summary>
         /// <param name="filePath">Il percorso del file da salvare 
         /// (se vuoto apre saveFileDialog)</param>
-        private void SalvaFile(bool isSalvaConNome = false)
+        private void SalvaFile(bool isSalvaConNome = false, FormClosingEventArgs eventFormClosing = null)
         {
             if (isSalvaConNome)
             {
-                if (saveFileDialogMain.ShowDialog() == DialogResult.OK)
+                DialogResult result = saveFileDialogMain.ShowDialog();
+                if (result == DialogResult.Cancel && eventFormClosing != null) 
+                    eventFormClosing.Cancel = true;
+                if (result == DialogResult.OK)
                     filePath = saveFileDialogMain.FileName;
                 else
                     return;
@@ -99,6 +102,31 @@ namespace Notepad
         private void salvaToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             SalvaFile(filePath == "");
+        }
+
+        private void esciToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (rtbMain.Text != lastSavedContent)
+            {
+                // c'è qualcosa da salvare
+                // chiedo all'utente se vuole salvare
+                DialogResult result = MessageBox.Show(
+                    $"Salvare le modifiche a {fileName}?",
+                    PROGRAM_NAME,
+                    MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    SalvaFile(filePath == "", e);
+                } else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
