@@ -14,24 +14,20 @@ namespace Notepad
         string lastSavedContent;
         bool isEdited;
 
+        #region costruttori
+
         public FormMain()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region gestori_eventi
+
         private void FormMain_Load(object sender, System.EventArgs e)
         {
             Reset();
-        }
-
-        private void Reset()
-        {
-            filePath = "";
-            fileName = "Senza nome";
-            lastSavedContent = "";
-            isEdited = false;
-            rtbMain.Text = "";
-            SetFormTitle();
         }
 
         private void rtbMain_TextChanged(object sender, System.EventArgs e)
@@ -39,6 +35,27 @@ namespace Notepad
             isEdited = rtbMain.Text != lastSavedContent;
             SetFormTitle();
         }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (rtbMain.Text != lastSavedContent)
+            {
+                // c'è qualcosa da salvare
+                // chiedo all'utente se vuole salvare
+                DialogResult result = ChiediSeSalvare();
+                if (result == DialogResult.Yes)
+                {
+                    SalvaFile(filePath == "", e);
+                } else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        #endregion
+
+        #region voci_di_menu
 
         private void nuovoToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
@@ -50,25 +67,51 @@ namespace Notepad
             else
             {
                 // chiedo all'utente se vuole salvare
-                DialogResult result = MessageBox.Show(
-                    $"Salvare le modifiche a {fileName}?",
-                    PROGRAM_NAME,
-                    MessageBoxButtons.YesNoCancel);
+                DialogResult result = ChiediSeSalvare();
                 if (result == DialogResult.Cancel) return;
                 if (result == DialogResult.Yes) SalvaFile(filePath == ""); // fa "salva con nome"
                 Reset();
             }
         }
 
-        private void SetFormTitle()
+        private void nuovaFinestraToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            string marker = isEdited ? EDITED_MARKER : "";
-            Text = $"{marker}{fileName} - {PROGRAM_NAME}";
+            Process.Start(Application.ExecutablePath);
+        }
+
+        private void salvaToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            SalvaFile(filePath == "");
         }
 
         private void salvaconnomeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             SalvaFile(true);
+        }
+
+        private void esciToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
+        #endregion
+
+        #region funzioni_helper
+
+        private void Reset()
+        {
+            filePath = "";
+            fileName = "Senza nome";
+            lastSavedContent = "";
+            isEdited = false;
+            rtbMain.Text = "";
+            SetFormTitle();
+        }
+
+        private void SetFormTitle()
+        {
+            string marker = isEdited ? EDITED_MARKER : "";
+            Text = $"{marker}{fileName} - {PROGRAM_NAME}";
         }
 
         /// <summary>
@@ -100,39 +143,16 @@ namespace Notepad
             SetFormTitle();
         }
 
-        private void salvaToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private DialogResult ChiediSeSalvare()
         {
-            SalvaFile(filePath == "");
-        }
-
-        private void esciToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            Close();
-        }
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (rtbMain.Text != lastSavedContent)
-            {
-                // c'è qualcosa da salvare
-                // chiedo all'utente se vuole salvare
-                DialogResult result = MessageBox.Show(
+            DialogResult result = MessageBox.Show(
                     $"Salvare le modifiche a {fileName}?",
                     PROGRAM_NAME,
                     MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    SalvaFile(filePath == "", e);
-                } else if (result == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                }
-            }
+            return result;
         }
 
-        private void nuovaFinestraToolStripMenuItem_Click(object sender, System.EventArgs e)
-        {
-            Process.Start(Application.ExecutablePath);
-        }
+        #endregion
+    
     }
 }
