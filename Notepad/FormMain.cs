@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Notepad
@@ -127,6 +128,11 @@ namespace Notepad
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void nuovaFinestraToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            Process.Start(Application.ExecutablePath);
         }
     }
 }
