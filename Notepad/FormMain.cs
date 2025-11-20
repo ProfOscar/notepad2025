@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -46,7 +47,8 @@ namespace Notepad
                 if (result == DialogResult.Yes)
                 {
                     SalvaFile(filePath == "", e);
-                } else if (result == DialogResult.Cancel)
+                }
+                else if (result == DialogResult.Cancel)
                 {
                     e.Cancel = true;
                 }
@@ -77,6 +79,24 @@ namespace Notepad
         private void nuovaFinestraToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             Process.Start(Application.ExecutablePath);
+        }
+
+        private void apriToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (rtbMain.Text != lastSavedContent)
+            {
+                // c'è contenuto da salvare
+                // chiedo all'utente se vuole salvare
+                DialogResult result = ChiediSeSalvare();
+                if (result == DialogResult.Cancel) return;
+                if (result == DialogResult.Yes) SalvaFile(filePath == ""); // fa "salva con nome"
+            }
+            // apro la dialog open file
+            openFileDialogMain.FileName = "";
+            if (openFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                ApriFile(openFileDialogMain.FileName);
+            }
         }
 
         private void salvaToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -122,25 +142,33 @@ namespace Notepad
         /// (se vuoto apre saveFileDialog)</param>
         private void SalvaFile(bool isSalvaConNome = false, FormClosingEventArgs eventFormClosing = null)
         {
-            if (isSalvaConNome)
+            try
             {
-                DialogResult result = saveFileDialogMain.ShowDialog();
-                if (result == DialogResult.Cancel && eventFormClosing != null) 
-                    eventFormClosing.Cancel = true;
-                if (result == DialogResult.OK)
-                    filePath = saveFileDialogMain.FileName;
-                else
-                    return;
+                if (isSalvaConNome)
+                {
+                    DialogResult result = saveFileDialogMain.ShowDialog();
+                    if (result == DialogResult.Cancel && eventFormClosing != null)
+                        eventFormClosing.Cancel = true;
+                    if (result == DialogResult.OK)
+                        filePath = saveFileDialogMain.FileName;
+                    else
+                        return;
+                }
+                // salva il contenuto del richtextbox su filePath
+                fileName = Path.GetFileName(filePath);
+                using (var writer = new StreamWriter(filePath))
+                {
+                    writer.Write(rtbMain.Text);
+                }
+                lastSavedContent = rtbMain.Text;
+                isEdited = false;
+                SetFormTitle();
             }
-            // salva il contenuto del richtextbox su filePath
-            fileName = Path.GetFileName(filePath);
-            using (var writer = new StreamWriter(filePath))
+            catch
             {
-                writer.Write(rtbMain.Text);
+                MessageBox.Show("Problemi con il salvataggio del documento",
+                    "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            lastSavedContent = rtbMain.Text;
-            isEdited = false;
-            SetFormTitle();
         }
 
         private DialogResult ChiediSeSalvare()
@@ -152,7 +180,26 @@ namespace Notepad
             return result;
         }
 
+        private void ApriFile(string fp)
+        {
+            try
+            {
+                using (var reader = new StreamReader(fp))
+                    rtbMain.Text = reader.ReadToEnd();
+                filePath = fp;
+                fileName = Path.GetFileName(filePath);
+                lastSavedContent = rtbMain.Text;
+                isEdited = false;
+                SetFormTitle();
+            }
+            catch
+            {
+                MessageBox.Show("Problemi con l'apertura del documento",
+                    "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion
-    
+
     }
 }

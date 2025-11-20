@@ -76,6 +76,7 @@
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
             this.rtbMain = new System.Windows.Forms.RichTextBox();
             this.saveFileDialogMain = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogMain = new System.Windows.Forms.OpenFileDialog();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,6 +138,7 @@
             this.apriToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.apriToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.apriToolStripMenuItem.Text = "&Apri...";
+            this.apriToolStripMenuItem.Click += new System.EventHandler(this.apriToolStripMenuItem_Click);
             // 
             // salvaToolStripMenuItem
             // 
@@ -460,6 +462,12 @@
             this.saveFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
             this.saveFileDialogMain.Title = "Salva con nome";
             // 
+            // openFileDialogMain
+            // 
+            this.openFileDialogMain.DefaultExt = "txt";
+            this.openFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
+            this.openFileDialogMain.Title = "Apri";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,6 +538,7 @@
         private System.Windows.Forms.ToolStripMenuItem inviaFeedbackToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.SaveFileDialog saveFileDialogMain;
+        private System.Windows.Forms.OpenFileDialog openFileDialogMain;
     }
 }
 
