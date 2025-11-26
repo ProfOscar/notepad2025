@@ -77,6 +77,9 @@
             this.rtbMain = new System.Windows.Forms.RichTextBox();
             this.saveFileDialogMain = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogMain = new System.Windows.Forms.OpenFileDialog();
+            this.pageSetupDialogMain = new System.Windows.Forms.PageSetupDialog();
+            this.printDocumentMain = new System.Drawing.Printing.PrintDocument();
+            this.printDialogMain = new System.Windows.Forms.PrintDialog();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,6 +172,7 @@
             this.impostaPaginaToolStripMenuItem.Name = "impostaPaginaToolStripMenuItem";
             this.impostaPaginaToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.impostaPaginaToolStripMenuItem.Text = "I&mposta pagina...";
+            this.impostaPaginaToolStripMenuItem.Click += new System.EventHandler(this.impostaPaginaToolStripMenuItem_Click);
             // 
             // stampaToolStripMenuItem
             // 
@@ -178,6 +182,7 @@
             this.stampaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.stampaToolStripMenuItem.Size = new System.Drawing.Size(267, 22);
             this.stampaToolStripMenuItem.Text = "S&tampa...";
+            this.stampaToolStripMenuItem.Click += new System.EventHandler(this.stampaToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -476,6 +481,14 @@
             this.openFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
             this.openFileDialogMain.Title = "Apri";
             // 
+            // pageSetupDialogMain
+            // 
+            this.pageSetupDialogMain.EnableMetric = true;
+            // 
+            // printDocumentMain
+            // 
+            this.printDocumentMain.DocumentName = "";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,6 +561,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.SaveFileDialog saveFileDialogMain;
         private System.Windows.Forms.OpenFileDialog openFileDialogMain;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialogMain;
+        private System.Drawing.Printing.PrintDocument printDocumentMain;
+        private System.Windows.Forms.PrintDialog printDialogMain;
     }
 }
 

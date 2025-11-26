@@ -28,7 +28,7 @@ namespace Notepad
 
         private void FormMain_Load(object sender, System.EventArgs e)
         {
-            Clipboard.Clear();
+            // Clipboard.Clear(); // opzionale: pulisce gli appunti all'avvio
             Reset();
         }
 
@@ -121,6 +121,25 @@ namespace Notepad
         private void salvaconnomeToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             SalvaFile(true);
+        }
+
+        private void impostaPaginaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pageSetupDialogMain.Document = printDocumentMain; // potrebbe essere fatto al load del form
+            if (pageSetupDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                printDocumentMain.PrinterSettings = pageSetupDialogMain.PrinterSettings;
+            }
+        }
+
+        private void stampaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDocumentMain.DocumentName = fileName;
+            printDialogMain.Document = printDocumentMain; // potrebbe essere fatto al load del form
+            if (printDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                printDocumentMain.Print();
+            }
         }
 
         private void esciToolStripMenuItem_Click(object sender, System.EventArgs e)
