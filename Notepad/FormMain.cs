@@ -28,7 +28,13 @@ namespace Notepad
 
         private void FormMain_Load(object sender, System.EventArgs e)
         {
+            Clipboard.Clear();
             Reset();
+        }
+
+        private void FormMain_Activated(object sender, EventArgs e)
+        {
+            incollaToolStripMenuItem.Enabled = Clipboard.ContainsText();
         }
 
         private void rtbMain_TextChanged(object sender, System.EventArgs e)
@@ -133,16 +139,18 @@ namespace Notepad
         private void tagliaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbMain.Cut();
+            incollaToolStripMenuItem.Enabled = Clipboard.ContainsText();
         }
 
         private void copiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbMain.Copy();
+            incollaToolStripMenuItem.Enabled = Clipboard.ContainsText();
         }
 
         private void incollaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            rtbMain.Paste();
         }
 
         private void eliminaToolStripMenuItem_Click(object sender, EventArgs e)
