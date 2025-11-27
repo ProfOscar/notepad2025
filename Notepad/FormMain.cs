@@ -74,26 +74,21 @@ namespace Notepad
                 rtbMain.SelectionLength > 0;
         }
 
-        private string stringToPrint;
+        private int indexFirstCharOnPage;
         private void printDocumentMain_BeginPrint(object sender, PrintEventArgs e)
         {
-            stringToPrint = rtbMain.Text;
+            indexFirstCharOnPage = 0;
         }
 
         private void printDocumentMain_PrintPage(object sender, PrintPageEventArgs e)
         {
-            int charsOnPage;
-            int linesInPages;
-            
-            e.Graphics.MeasureString(stringToPrint, rtbMain.Font, 
-                e.MarginBounds.Size, StringFormat.GenericTypographic,
-                out charsOnPage, out linesInPages);
+            indexFirstCharOnPage = rtbMain.FormatRange(false, e, indexFirstCharOnPage, rtbMain.TextLength);
+            e.HasMorePages = indexFirstCharOnPage < rtbMain.TextLength;
+        }
 
-            e.Graphics.DrawString(stringToPrint, rtbMain.Font, new SolidBrush(rtbMain.ForeColor),
-                e.MarginBounds, StringFormat.GenericTypographic);
-
-            stringToPrint = stringToPrint.Substring(charsOnPage);
-            e.HasMorePages = stringToPrint.Length > 0;
+        private void printDocumentMain_EndPrint(object sender, PrintEventArgs e)
+        {
+            rtbMain.FormatRangeDone();
         }
 
         #endregion
@@ -153,10 +148,12 @@ namespace Notepad
         private void impostaPaginaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pageSetupDialogMain.Document = printDocumentMain; // potrebbe essere fatto al load del form
-            if (pageSetupDialogMain.ShowDialog() == DialogResult.OK)
-            {
-                printDocumentMain.PrinterSettings = pageSetupDialogMain.PrinterSettings;
-            }
+            // Usando RichTextBoxEx NON BISOGNA applicare le impostazioni di stampa all'oggetto PrintDocument
+            //if (pageSetupDialogMain.ShowDialog() == DialogResult.OK)
+            //{
+            //    printDocumentMain.PrinterSettings = pageSetupDialogMain.PrinterSettings;
+            //}
+            pageSetupDialogMain.ShowDialog();
         }
 
         private void stampaToolStripMenuItem_Click(object sender, EventArgs e)

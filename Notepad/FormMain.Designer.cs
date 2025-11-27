@@ -74,12 +74,12 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.informazionisuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
-            this.rtbMain = new System.Windows.Forms.RichTextBox();
             this.saveFileDialogMain = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogMain = new System.Windows.Forms.OpenFileDialog();
             this.pageSetupDialogMain = new System.Windows.Forms.PageSetupDialog();
             this.printDocumentMain = new System.Drawing.Printing.PrintDocument();
             this.printDialogMain = new System.Windows.Forms.PrintDialog();
+            this.rtbMain = new Notepad.RichTextBoxEx();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -457,17 +457,6 @@
             this.statusStripBottom.TabIndex = 1;
             this.statusStripBottom.Text = "Barra di Stato";
             // 
-            // rtbMain
-            // 
-            this.rtbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbMain.Location = new System.Drawing.Point(0, 24);
-            this.rtbMain.Name = "rtbMain";
-            this.rtbMain.Size = new System.Drawing.Size(800, 404);
-            this.rtbMain.TabIndex = 2;
-            this.rtbMain.Text = "";
-            this.rtbMain.SelectionChanged += new System.EventHandler(this.rtbMain_SelectionChanged);
-            this.rtbMain.TextChanged += new System.EventHandler(this.rtbMain_TextChanged);
-            // 
             // saveFileDialogMain
             // 
             this.saveFileDialogMain.DefaultExt = "txt";
@@ -489,7 +478,19 @@
             // 
             this.printDocumentMain.DocumentName = "";
             this.printDocumentMain.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_BeginPrint);
+            this.printDocumentMain.EndPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_EndPrint);
             this.printDocumentMain.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentMain_PrintPage);
+            // 
+            // rtbMain
+            // 
+            this.rtbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbMain.Location = new System.Drawing.Point(0, 24);
+            this.rtbMain.Name = "rtbMain";
+            this.rtbMain.Size = new System.Drawing.Size(800, 404);
+            this.rtbMain.TabIndex = 2;
+            this.rtbMain.Text = "";
+            this.rtbMain.SelectionChanged += new System.EventHandler(this.rtbMain_SelectionChanged);
+            this.rtbMain.TextChanged += new System.EventHandler(this.rtbMain_TextChanged);
             // 
             // FormMain
             // 
@@ -517,7 +518,7 @@
 
         private System.Windows.Forms.MenuStrip menuStripTop;
         private System.Windows.Forms.StatusStrip statusStripBottom;
-        private System.Windows.Forms.RichTextBox rtbMain;
+        private RichTextBoxEx rtbMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuovoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem apriToolStripMenuItem;
