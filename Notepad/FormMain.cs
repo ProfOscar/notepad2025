@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
+using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Notepad
@@ -67,6 +72,28 @@ namespace Notepad
             tagliaToolStripMenuItem.Enabled =
             eliminaToolStripMenuItem.Enabled =
                 rtbMain.SelectionLength > 0;
+        }
+
+        private string stringToPrint;
+        private void printDocumentMain_BeginPrint(object sender, PrintEventArgs e)
+        {
+            stringToPrint = rtbMain.Text;
+        }
+
+        private void printDocumentMain_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            int charsOnPage;
+            int linesInPages;
+            
+            e.Graphics.MeasureString(stringToPrint, rtbMain.Font, 
+                e.MarginBounds.Size, StringFormat.GenericTypographic,
+                out charsOnPage, out linesInPages);
+
+            e.Graphics.DrawString(stringToPrint, rtbMain.Font, new SolidBrush(rtbMain.ForeColor),
+                e.MarginBounds, StringFormat.GenericTypographic);
+
+            stringToPrint = stringToPrint.Substring(charsOnPage);
+            e.HasMorePages = stringToPrint.Length > 0;
         }
 
         #endregion

@@ -488,6 +488,8 @@
             // printDocumentMain
             // 
             this.printDocumentMain.DocumentName = "";
+            this.printDocumentMain.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_BeginPrint);
+            this.printDocumentMain.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentMain_PrintPage);
             // 
             // FormMain
             // 
