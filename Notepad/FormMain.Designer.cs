@@ -431,12 +431,14 @@
             this.guidaToolStripMenuItem.Name = "guidaToolStripMenuItem";
             this.guidaToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.guidaToolStripMenuItem.Text = "&Guida";
+            this.guidaToolStripMenuItem.Click += new System.EventHandler(this.guidaToolStripMenuItem_Click);
             // 
             // inviaFeedbackToolStripMenuItem
             // 
             this.inviaFeedbackToolStripMenuItem.Name = "inviaFeedbackToolStripMenuItem";
             this.inviaFeedbackToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.inviaFeedbackToolStripMenuItem.Text = "&Invia feedback";
+            this.inviaFeedbackToolStripMenuItem.Click += new System.EventHandler(this.inviaFeedbackToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 

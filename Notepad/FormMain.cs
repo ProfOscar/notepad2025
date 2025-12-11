@@ -211,6 +211,16 @@ namespace Notepad
             rtbMain.SelectedText = DateTime.Now.ToString("HH:mm dd/MM/yyyy");
         }
 
+        private void guidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://go.microsoft.com/fwlink/?LinkId=834783");
+        }
+
+        private void inviaFeedbackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/ProfOscar/notepad2025/issues");
+        }
+
         private void informazionisuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox aboutBox = new AboutBox();
