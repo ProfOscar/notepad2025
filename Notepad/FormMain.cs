@@ -211,6 +211,12 @@ namespace Notepad
             rtbMain.SelectedText = DateTime.Now.ToString("HH:mm dd/MM/yyyy");
         }
 
+        private void informazionisuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
+
         #endregion
 
         #region funzioni_helper
