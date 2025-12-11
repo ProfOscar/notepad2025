@@ -34,6 +34,9 @@ namespace Notepad
         private void FormMain_Load(object sender, System.EventArgs e)
         {
             // Clipboard.Clear(); // opzionale: pulisce gli appunti all'avvio
+            barraDistatoToolStripMenuItem.Checked = true;
+            barraDistatoToolStripMenuItem.CheckOnClick = true;
+            statusStripBottom.Visible = true;
             Reset();
         }
 
@@ -209,6 +212,28 @@ namespace Notepad
         private void oraDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbMain.SelectedText = DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+        }
+
+        private void zoomAvantiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rtbMain.ZoomFactor < 5)
+                rtbMain.ZoomFactor += (float)0.1;
+        }
+
+        private void zoomIndietroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (rtbMain.ZoomFactor >= 0.2)
+                rtbMain.ZoomFactor -= 0.1f;
+        }
+
+        private void ripristinaZoomPredefinitoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.ZoomFactor = 1;
+        }
+
+        private void barraDistatoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            statusStripBottom.Visible = barraDistatoToolStripMenuItem.Checked;
         }
 
         private void guidaToolStripMenuItem_Click(object sender, EventArgs e)
