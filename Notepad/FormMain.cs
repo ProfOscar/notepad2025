@@ -205,6 +205,18 @@ namespace Notepad
             rtbMain.SelectedText = "";
         }
 
+        private void vaiAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int currentLine = rtbMain.GetLineFromCharIndex(rtbMain.SelectionStart) + 1;
+            int linesCount = rtbMain.Lines.Length;
+            FormVaiA f = new FormVaiA(currentLine, linesCount);
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                int charIndex = rtbMain.GetFirstCharIndexFromLine(f.numRiga - 1);
+                rtbMain.SelectionStart = charIndex;
+            }
+        }
+
         private void selezionatuttoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbMain.SelectAll();
