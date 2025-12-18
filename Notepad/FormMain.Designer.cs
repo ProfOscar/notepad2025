@@ -351,13 +351,14 @@
             // 
             this.aCapoAutomaticoToolStripMenuItem.CheckOnClick = true;
             this.aCapoAutomaticoToolStripMenuItem.Name = "aCapoAutomaticoToolStripMenuItem";
-            this.aCapoAutomaticoToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.aCapoAutomaticoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aCapoAutomaticoToolStripMenuItem.Text = "A capo a&utomatico";
+            this.aCapoAutomaticoToolStripMenuItem.Click += new System.EventHandler(this.aCapoAutomaticoToolStripMenuItem_Click);
             // 
             // carattereToolStripMenuItem
             // 
             this.carattereToolStripMenuItem.Name = "carattereToolStripMenuItem";
-            this.carattereToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.carattereToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.carattereToolStripMenuItem.Text = "Cara&ttere...";
             // 
             // visualizzaToolStripMenuItem

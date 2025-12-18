@@ -37,6 +37,7 @@ namespace Notepad
             barraDistatoToolStripMenuItem.Checked = true;
             barraDistatoToolStripMenuItem.CheckOnClick = true;
             statusStripBottom.Visible = true;
+            rtbMain.WordWrap = false;
             Reset();
         }
 
@@ -212,6 +213,12 @@ namespace Notepad
         private void oraDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbMain.SelectedText = DateTime.Now.ToString("HH:mm dd/MM/yyyy");
+        }
+
+        private void aCapoAutomaticoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbMain.WordWrap = aCapoAutomaticoToolStripMenuItem.Checked;
+            vaiAToolStripMenuItem.Enabled = !rtbMain.WordWrap;
         }
 
         private void zoomAvantiToolStripMenuItem_Click(object sender, EventArgs e)
