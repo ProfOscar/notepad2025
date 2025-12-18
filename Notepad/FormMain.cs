@@ -38,6 +38,7 @@ namespace Notepad
             barraDistatoToolStripMenuItem.CheckOnClick = true;
             statusStripBottom.Visible = true;
             rtbMain.WordWrap = false;
+            rtbMain.Font = new Font("Consolas", 11, FontStyle.Regular);
             Reset();
         }
 
@@ -231,6 +232,13 @@ namespace Notepad
         {
             rtbMain.WordWrap = aCapoAutomaticoToolStripMenuItem.Checked;
             vaiAToolStripMenuItem.Enabled = !rtbMain.WordWrap;
+        }
+
+        private void carattereToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fontDialogMain.Font = rtbMain.Font;
+            if (fontDialogMain.ShowDialog() == DialogResult.OK)
+                rtbMain.Font = fontDialogMain.Font;
         }
 
         private void zoomAvantiToolStripMenuItem_Click(object sender, EventArgs e)

@@ -80,6 +80,7 @@
             this.printDocumentMain = new System.Drawing.Printing.PrintDocument();
             this.printDialogMain = new System.Windows.Forms.PrintDialog();
             this.rtbMain = new Notepad.RichTextBoxEx();
+            this.fontDialogMain = new System.Windows.Forms.FontDialog();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -361,6 +362,7 @@
             this.carattereToolStripMenuItem.Name = "carattereToolStripMenuItem";
             this.carattereToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.carattereToolStripMenuItem.Text = "Cara&ttere...";
+            this.carattereToolStripMenuItem.Click += new System.EventHandler(this.carattereToolStripMenuItem_Click);
             // 
             // visualizzaToolStripMenuItem
             // 
@@ -378,7 +380,7 @@
             this.zoomIndietroToolStripMenuItem,
             this.ripristinaZoomPredefinitoToolStripMenuItem});
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zoomToolStripMenuItem.Text = "&Zoom";
             // 
             // zoomAvantiToolStripMenuItem
@@ -411,7 +413,7 @@
             // 
             this.barraDistatoToolStripMenuItem.CheckOnClick = true;
             this.barraDistatoToolStripMenuItem.Name = "barraDistatoToolStripMenuItem";
-            this.barraDistatoToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.barraDistatoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.barraDistatoToolStripMenuItem.Text = "Barra di &stato";
             this.barraDistatoToolStripMenuItem.Click += new System.EventHandler(this.barraDistatoToolStripMenuItem_Click);
             // 
@@ -576,6 +578,7 @@
         private System.Windows.Forms.PageSetupDialog pageSetupDialogMain;
         private System.Drawing.Printing.PrintDocument printDocumentMain;
         private System.Windows.Forms.PrintDialog printDialogMain;
+        private System.Windows.Forms.FontDialog fontDialogMain;
     }
 }
 
