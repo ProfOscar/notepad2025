@@ -37,6 +37,7 @@ namespace Notepad
             rtbMain.WordWrap = false;
             rtbMain.Font = new Font("Consolas", 11, FontStyle.Regular);
             Reset();
+            ScriviZoomSuStatusBar();
         }
 
         private void FormMain_Activated(object sender, EventArgs e)
@@ -251,18 +252,25 @@ namespace Notepad
         private void zoomAvantiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (rtbMain.ZoomFactor < 5)
+            {
                 rtbMain.ZoomFactor += (float)0.1;
+                ScriviZoomSuStatusBar();
+            }
         }
 
         private void zoomIndietroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (rtbMain.ZoomFactor >= 0.2)
+            if (rtbMain.ZoomFactor >= 0.2) 
+            {
                 rtbMain.ZoomFactor -= 0.1f;
+                ScriviZoomSuStatusBar();
+            }
         }
 
         private void ripristinaZoomPredefinitoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbMain.ZoomFactor = 1;
+            ScriviZoomSuStatusBar();
         }
 
         private void barraDistatoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -375,6 +383,12 @@ namespace Notepad
                 MessageBox.Show("Problemi con l'apertura del documento",
                     "ATTENZIONE", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void ScriviZoomSuStatusBar()
+        {
+            int zoom = (int)(rtbMain.ZoomFactor * 10);
+            toolStripStatusLabelZoom.Text = $"{zoom}0%";
         }
 
         #endregion
