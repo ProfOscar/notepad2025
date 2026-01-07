@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace Notepad
@@ -76,6 +73,7 @@ namespace Notepad
             copiaToolStripMenuItem.Enabled =
             tagliaToolStripMenuItem.Enabled =
             eliminaToolStripMenuItem.Enabled =
+            cercaConBingToolStripMenuItem.Enabled =
                 rtbMain.SelectionLength > 0;
         }
 
@@ -206,6 +204,15 @@ namespace Notepad
             rtbMain.SelectedText = "";
         }
 
+        private void cercaConBingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string baseUrl = "https://www.bing.com/search?q=";
+            string searchQuery = rtbMain.SelectedText.Trim();
+            if (searchQuery.Length > 128)
+                searchQuery = searchQuery.Substring(0, 128);
+            Process.Start(baseUrl + Uri.EscapeDataString(searchQuery));
+        }
+
         private void vaiAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int currentLine = rtbMain.GetLineFromCharIndex(rtbMain.SelectionStart) + 1;
@@ -288,6 +295,7 @@ namespace Notepad
             copiaToolStripMenuItem.Enabled =
             tagliaToolStripMenuItem.Enabled =
             eliminaToolStripMenuItem.Enabled =
+            cercaConBingToolStripMenuItem.Enabled =
                 rtbMain.SelectionLength > 0;
 
             filePath = "";
@@ -370,6 +378,5 @@ namespace Notepad
         }
 
         #endregion
-
     }
 }
