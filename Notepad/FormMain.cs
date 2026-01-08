@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Notepad
@@ -77,6 +78,7 @@ namespace Notepad
             eliminaToolStripMenuItem.Enabled =
             cercaConBingToolStripMenuItem.Enabled =
                 rtbMain.SelectionLength > 0;
+            ScriviRigaColonnaSuStatusBar();
         }
 
         private void RtbMain_MouseWheel(object sender, MouseEventArgs e)
@@ -319,6 +321,7 @@ namespace Notepad
             isEdited = false;
             rtbMain.Text = "";
             SetFormTitle();
+            ScriviRigaColonnaSuStatusBar();
         }
 
         private void SetFormTitle()
@@ -396,6 +399,18 @@ namespace Notepad
         {
             int zoom = (int)(rtbMain.ZoomFactor * 10);
             toolStripStatusLabelZoom.Text = $"{zoom}0%";
+        }
+
+        private void ScriviRigaColonnaSuStatusBar()
+        {
+            int nLine = 1, nCol = 1;
+            if (rtbMain.Text.Length > 0)
+            {
+                string textBeforeCursor = rtbMain.Text.Substring(0, rtbMain.SelectionStart);
+                nLine = Regex.Matches(textBeforeCursor, @"\n").Count + 1;
+                nCol = rtbMain.SelectionStart - textBeforeCursor.LastIndexOf("\n");
+            }
+            toolStripStatusLabelLineColumn.Text = $"Linea {nLine}, colonna {nCol}";
         }
 
         #endregion
