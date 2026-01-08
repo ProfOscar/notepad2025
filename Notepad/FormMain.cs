@@ -325,7 +325,7 @@ namespace Notepad
             rtbMain.Text = "";
             SetFormTitle();
             ScriviRigaColonnaSuStatusBar();
-            currentEncoding = Encoding.UTF8;
+            currentEncoding = new UTF8Encoding(false);
             toolStripStatusLabelEncoding.Text = currentEncoding.BodyName.ToUpper();
         }
 
