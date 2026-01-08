@@ -36,6 +36,7 @@ namespace Notepad
             statusStripBottom.Visible = true;
             rtbMain.WordWrap = false;
             rtbMain.Font = new Font("Consolas", 11, FontStyle.Regular);
+            rtbMain.MouseWheel += RtbMain_MouseWheel;
             Reset();
             ScriviZoomSuStatusBar();
         }
@@ -43,12 +44,6 @@ namespace Notepad
         private void FormMain_Activated(object sender, EventArgs e)
         {
             incollaToolStripMenuItem.Enabled = Clipboard.ContainsText();
-        }
-
-        private void rtbMain_TextChanged(object sender, System.EventArgs e)
-        {
-            isEdited = rtbMain.Text != lastSavedContent;
-            SetFormTitle();
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -69,6 +64,12 @@ namespace Notepad
             }
         }
 
+        private void rtbMain_TextChanged(object sender, System.EventArgs e)
+        {
+            isEdited = rtbMain.Text != lastSavedContent;
+            SetFormTitle();
+        }
+
         private void rtbMain_SelectionChanged(object sender, EventArgs e)
         {
             copiaToolStripMenuItem.Enabled =
@@ -76,6 +77,12 @@ namespace Notepad
             eliminaToolStripMenuItem.Enabled =
             cercaConBingToolStripMenuItem.Enabled =
                 rtbMain.SelectionLength > 0;
+        }
+
+        private void RtbMain_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (ModifierKeys == Keys.Control)
+                ScriviZoomSuStatusBar();
         }
 
         private int indexFirstCharOnPage;
