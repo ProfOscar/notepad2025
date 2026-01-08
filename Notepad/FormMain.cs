@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -17,6 +18,8 @@ namespace Notepad
         string fileName;
         string lastSavedContent;
         bool isEdited;
+
+        Encoding currentEncoding;
 
         #region costruttori
 
@@ -322,6 +325,8 @@ namespace Notepad
             rtbMain.Text = "";
             SetFormTitle();
             ScriviRigaColonnaSuStatusBar();
+            currentEncoding = Encoding.UTF8;
+            toolStripStatusLabelEncoding.Text = currentEncoding.BodyName.ToUpper();
         }
 
         private void SetFormTitle()
@@ -352,7 +357,7 @@ namespace Notepad
                 }
                 // salva il contenuto del richtextbox su filePath
                 fileName = Path.GetFileName(filePath);
-                using (var writer = new StreamWriter(filePath))
+                using (var writer = new StreamWriter(filePath, false, currentEncoding))
                 {
                     writer.Write(rtbMain.Text);
                 }
@@ -380,8 +385,12 @@ namespace Notepad
         {
             try
             {
-                using (var reader = new StreamReader(fp))
+                using (var reader = new StreamReader(fp)) 
+                { 
                     rtbMain.Text = reader.ReadToEnd();
+                    currentEncoding = reader.CurrentEncoding;
+                    toolStripStatusLabelEncoding.Text = currentEncoding.BodyName.ToUpper();
+                }
                 filePath = fp;
                 fileName = Path.GetFileName(filePath);
                 lastSavedContent = rtbMain.Text;
