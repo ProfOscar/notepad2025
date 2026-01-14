@@ -14,6 +14,10 @@ namespace Notepad
         const string EDITED_MARKER = "*";
         const string PROGRAM_NAME = "Blocco note di Windows";
 
+        const string WIN_LINE_ENDING = "Windows (CRLF)";
+        const string MAC_LINE_ENDING = "Macintosh (CR)";
+        const string UNIX_LINE_ENDING = "Unix (LF)";
+
         string filePath;
         string fileName;
         string lastSavedContent;
@@ -325,6 +329,7 @@ namespace Notepad
             rtbMain.Text = "";
             SetFormTitle();
             ScriviRigaColonnaSuStatusBar();
+            toolStripStatusLabelLineEnding.Text = WIN_LINE_ENDING;
             currentEncoding = new UTF8Encoding(false);
             toolStripStatusLabelEncoding.Text = currentEncoding.BodyName.ToUpper();
         }
@@ -359,7 +364,14 @@ namespace Notepad
                 fileName = Path.GetFileName(filePath);
                 using (var writer = new StreamWriter(filePath, false, currentEncoding))
                 {
-                    writer.Write(rtbMain.Text);
+                    string textToSave;
+                    if (toolStripStatusLabelLineEnding.Text == WIN_LINE_ENDING)
+                        textToSave = rtbMain.Text.Replace("\n", "\r\n");
+                    else if (toolStripStatusLabelLineEnding.Text == MAC_LINE_ENDING)
+                        textToSave = rtbMain.Text.Replace("\n", "\r");
+                    else // UNIX_LINE_ENDING
+                        textToSave = rtbMain.Text;
+                    writer.Write(textToSave);
                 }
                 lastSavedContent = rtbMain.Text;
                 isEdited = false;
@@ -386,10 +398,23 @@ namespace Notepad
             try
             {
                 using (var reader = new StreamReader(fp)) 
-                { 
-                    rtbMain.Text = reader.ReadToEnd();
+                {
+                    // necessaria questa variable perchè il RichTextBox converte tutti gli "a capo" in LF ("\n)
+                    string myText = reader.ReadToEnd();
+
+                    if (myText.Contains("\r\n"))
+                        toolStripStatusLabelLineEnding.Text = WIN_LINE_ENDING;
+                    else if (myText.Contains("\r"))
+                        toolStripStatusLabelLineEnding.Text = MAC_LINE_ENDING;
+                    else if (myText.Contains("\n"))
+                        toolStripStatusLabelLineEnding.Text = UNIX_LINE_ENDING;
+                    else
+                        toolStripStatusLabelLineEnding.Text = WIN_LINE_ENDING;
+
                     currentEncoding = reader.CurrentEncoding;
                     toolStripStatusLabelEncoding.Text = currentEncoding.BodyName.ToUpper();
+
+                    rtbMain.Text = myText;
                 }
                 filePath = fp;
                 fileName = Path.GetFileName(filePath);
