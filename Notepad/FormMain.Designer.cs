@@ -74,16 +74,16 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.informazionisuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripBottom = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabelEncoding = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelLineEnding = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelZoom = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelLineColumn = new System.Windows.Forms.ToolStripStatusLabel();
             this.saveFileDialogMain = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogMain = new System.Windows.Forms.OpenFileDialog();
             this.pageSetupDialogMain = new System.Windows.Forms.PageSetupDialog();
             this.printDocumentMain = new System.Drawing.Printing.PrintDocument();
             this.printDialogMain = new System.Windows.Forms.PrintDialog();
             this.fontDialogMain = new System.Windows.Forms.FontDialog();
-            this.toolStripStatusLabelEncoding = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelLineEnding = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelZoom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelLineColumn = new System.Windows.Forms.ToolStripStatusLabel();
             this.rtbMain = new Notepad.RichTextBoxEx();
             this.menuStripTop.SuspendLayout();
             this.statusStripBottom.SuspendLayout();
@@ -295,6 +295,7 @@
             this.trovaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
             this.trovaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.trovaToolStripMenuItem.Text = "Tr&ova...";
+            this.trovaToolStripMenuItem.Click += new System.EventHandler(this.trovaToolStripMenuItem_Click);
             // 
             // trovaSuccessivoToolStripMenuItem
             // 
@@ -302,6 +303,7 @@
             this.trovaSuccessivoToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
             this.trovaSuccessivoToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.trovaSuccessivoToolStripMenuItem.Text = "T&rova successivo";
+            this.trovaSuccessivoToolStripMenuItem.Click += new System.EventHandler(this.trovaSuccessivoToolStripMenuItem_Click);
             // 
             // trovaPrecedenteToolStripMenuItem
             // 
@@ -309,6 +311,7 @@
             this.trovaPrecedenteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F3)));
             this.trovaPrecedenteToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.trovaPrecedenteToolStripMenuItem.Text = "Trova pre&cedente";
+            this.trovaPrecedenteToolStripMenuItem.Click += new System.EventHandler(this.trovaPrecedenteToolStripMenuItem_Click);
             // 
             // sostituisciToolStripMenuItem
             // 
@@ -316,6 +319,7 @@
             this.sostituisciToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             this.sostituisciToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.sostituisciToolStripMenuItem.Text = "&Sostituisci...";
+            this.sostituisciToolStripMenuItem.Click += new System.EventHandler(this.sostituisciToolStripMenuItem_Click);
             // 
             // vaiAToolStripMenuItem
             // 
@@ -480,30 +484,6 @@
             this.statusStripBottom.TabIndex = 1;
             this.statusStripBottom.Text = "Barra di Stato";
             // 
-            // saveFileDialogMain
-            // 
-            this.saveFileDialogMain.DefaultExt = "txt";
-            this.saveFileDialogMain.FileName = "*.txt";
-            this.saveFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
-            this.saveFileDialogMain.Title = "Salva con nome";
-            // 
-            // openFileDialogMain
-            // 
-            this.openFileDialogMain.DefaultExt = "txt";
-            this.openFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
-            this.openFileDialogMain.Title = "Apri";
-            // 
-            // pageSetupDialogMain
-            // 
-            this.pageSetupDialogMain.EnableMetric = true;
-            // 
-            // printDocumentMain
-            // 
-            this.printDocumentMain.DocumentName = "";
-            this.printDocumentMain.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_BeginPrint);
-            this.printDocumentMain.EndPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_EndPrint);
-            this.printDocumentMain.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentMain_PrintPage);
-            // 
             // toolStripStatusLabelEncoding
             // 
             this.toolStripStatusLabelEncoding.AutoSize = false;
@@ -539,6 +519,30 @@
             this.toolStripStatusLabelLineColumn.Size = new System.Drawing.Size(130, 19);
             this.toolStripStatusLabelLineColumn.Text = "(LINEA,COLONNA)";
             this.toolStripStatusLabelLineColumn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // saveFileDialogMain
+            // 
+            this.saveFileDialogMain.DefaultExt = "txt";
+            this.saveFileDialogMain.FileName = "*.txt";
+            this.saveFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
+            this.saveFileDialogMain.Title = "Salva con nome";
+            // 
+            // openFileDialogMain
+            // 
+            this.openFileDialogMain.DefaultExt = "txt";
+            this.openFileDialogMain.Filter = "Documenti di testo (*.txt)|*.txt|Tutti i file (*.*)|*.*";
+            this.openFileDialogMain.Title = "Apri";
+            // 
+            // pageSetupDialogMain
+            // 
+            this.pageSetupDialogMain.EnableMetric = true;
+            // 
+            // printDocumentMain
+            // 
+            this.printDocumentMain.DocumentName = "";
+            this.printDocumentMain.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_BeginPrint);
+            this.printDocumentMain.EndPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocumentMain_EndPrint);
+            this.printDocumentMain.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentMain_PrintPage);
             // 
             // rtbMain
             // 

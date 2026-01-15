@@ -55,11 +55,29 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBaseTrovaSostituisci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBaseTrovaSostituisci.Designer.cs">
+      <DependentUpon>FormBaseTrovaSostituisci.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSostituisci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSostituisci.Designer.cs">
+      <DependentUpon>FormSostituisci.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTrova.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTrova.Designer.cs">
+      <DependentUpon>FormTrova.cs</DependentUpon>
     </Compile>
     <Compile Include="FormVaiA.cs">
       <SubType>Form</SubType>
@@ -75,8 +93,17 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBaseTrovaSostituisci.resx">
+      <DependentUpon>FormBaseTrovaSostituisci.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSostituisci.resx">
+      <DependentUpon>FormSostituisci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTrova.resx">
+      <DependentUpon>FormTrova.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVaiA.resx">
       <DependentUpon>FormVaiA.cs</DependentUpon>

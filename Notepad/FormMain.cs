@@ -74,6 +74,11 @@ namespace Notepad
 
         private void rtbMain_TextChanged(object sender, System.EventArgs e)
         {
+            trovaToolStripMenuItem.Enabled =
+            trovaPrecedenteToolStripMenuItem.Enabled =
+            trovaSuccessivoToolStripMenuItem.Enabled =
+            sostituisciToolStripMenuItem.Enabled =
+                rtbMain.TextLength > 0;
             isEdited = rtbMain.Text != lastSavedContent;
             SetFormTitle();
         }
@@ -230,6 +235,30 @@ namespace Notepad
             Process.Start(baseUrl + Uri.EscapeDataString(searchQuery));
         }
 
+        private void trovaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTrova formTrova = new FormTrova();
+            formTrova.Location = new Point(70, 70);
+            formTrova.ShowDialog();
+        }
+
+        private void trovaSuccessivoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trovaPrecedenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sostituisciToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSostituisci formSostituisci = new FormSostituisci();
+            formSostituisci.Location = new Point(70, 70);
+            formSostituisci.ShowDialog();
+        }
+
         private void vaiAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int currentLine = rtbMain.GetLineFromCharIndex(rtbMain.SelectionStart) + 1;
@@ -321,6 +350,12 @@ namespace Notepad
             eliminaToolStripMenuItem.Enabled =
             cercaConBingToolStripMenuItem.Enabled =
                 rtbMain.SelectionLength > 0;
+
+            trovaToolStripMenuItem.Enabled =
+            trovaPrecedenteToolStripMenuItem.Enabled =
+            trovaSuccessivoToolStripMenuItem.Enabled =
+            sostituisciToolStripMenuItem.Enabled =
+                rtbMain.TextLength > 0;
 
             filePath = "";
             fileName = "Senza nome";
