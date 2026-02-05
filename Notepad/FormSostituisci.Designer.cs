@@ -64,6 +64,7 @@
             this.btnSostituisci.TabIndex = 8;
             this.btnSostituisci.Text = "Sostituisci";
             this.btnSostituisci.UseVisualStyleBackColor = true;
+            this.btnSostituisci.Click += new System.EventHandler(this.btnSostituisci_Click);
             // 
             // btnSostituisciTutto
             // 
@@ -73,6 +74,7 @@
             this.btnSostituisciTutto.TabIndex = 9;
             this.btnSostituisciTutto.Text = "Sostituisci tutto";
             this.btnSostituisciTutto.UseVisualStyleBackColor = true;
+            this.btnSostituisciTutto.Click += new System.EventHandler(this.btnSostituisciTutto_Click);
             // 
             // FormSostituisci
             // 
@@ -84,6 +86,7 @@
             this.Controls.Add(this.lblSostituisci);
             this.Name = "FormSostituisci";
             this.Text = "Sostituisci";
+            this.Load += new System.EventHandler(this.FormSostituisci_Load);
             this.Controls.SetChildIndex(this.txtTrova, 0);
             this.Controls.SetChildIndex(this.btnTrova, 0);
             this.Controls.SetChildIndex(this.btnAnnulla, 0);

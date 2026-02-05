@@ -61,6 +61,7 @@
             this.btnTrova.TabIndex = 2;
             this.btnTrova.Text = "Trova successivo";
             this.btnTrova.UseVisualStyleBackColor = true;
+            this.btnTrova.Click += new System.EventHandler(this.btnTrova_Click);
             // 
             // btnAnnulla
             // 
@@ -71,6 +72,7 @@
             this.btnAnnulla.TabIndex = 3;
             this.btnAnnulla.Text = "Annulla";
             this.btnAnnulla.UseVisualStyleBackColor = true;
+            this.btnAnnulla.Click += new System.EventHandler(this.btnAnnulla_Click);
             // 
             // chkMiusMinus
             // 
@@ -107,6 +109,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormBaseTrovaSostituisci";
             this.Text = "FormBaseTrovaSostituisci";
+            this.Load += new System.EventHandler(this.FormBaseTrovaSostituisci_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

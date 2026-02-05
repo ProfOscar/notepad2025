@@ -45,8 +45,9 @@ namespace Notepad
             rtbMain.WordWrap = false;
             rtbMain.Font = new Font("Consolas", 11, FontStyle.Regular);
             rtbMain.MouseWheel += RtbMain_MouseWheel;
-            Reset();
+            FindReplaceService.Target = rtbMain;
             ScriviZoomSuStatusBar();
+            Reset();
         }
 
         private void FormMain_Activated(object sender, EventArgs e)
@@ -237,9 +238,12 @@ namespace Notepad
 
         private void trovaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (rtbMain.SelectionLength > 0)
+                FindReplaceService.Parameters.TextToFind = rtbMain.SelectedText;
             FormTrova formTrova = new FormTrova();
             formTrova.Location = new Point(70, 70);
-            formTrova.ShowDialog();
+            formTrova.TopMost = true;
+            formTrova.Show();
         }
 
         private void trovaSuccessivoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -254,9 +258,12 @@ namespace Notepad
 
         private void sostituisciToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (rtbMain.SelectionLength > 0)
+                FindReplaceService.Parameters.TextToFind = rtbMain.SelectedText;
             FormSostituisci formSostituisci = new FormSostituisci();
             formSostituisci.Location = new Point(70, 70);
-            formSostituisci.ShowDialog();
+            formSostituisci.TopMost = true;
+            formSostituisci.Show();
         }
 
         private void vaiAToolStripMenuItem_Click(object sender, EventArgs e)
