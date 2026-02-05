@@ -32,7 +32,7 @@
             this.txtTrova = new System.Windows.Forms.TextBox();
             this.btnTrova = new System.Windows.Forms.Button();
             this.btnAnnulla = new System.Windows.Forms.Button();
-            this.chkMiusMinus = new System.Windows.Forms.CheckBox();
+            this.chkMaiusMinus = new System.Windows.Forms.CheckBox();
             this.chkTestoIntorno = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -76,13 +76,13 @@
             // 
             // chkMiusMinus
             // 
-            this.chkMiusMinus.AutoSize = true;
-            this.chkMiusMinus.Location = new System.Drawing.Point(12, 67);
-            this.chkMiusMinus.Name = "chkMiusMinus";
-            this.chkMiusMinus.Size = new System.Drawing.Size(126, 17);
-            this.chkMiusMinus.TabIndex = 4;
-            this.chkMiusMinus.Text = "Maiuscole/minuscole";
-            this.chkMiusMinus.UseVisualStyleBackColor = true;
+            this.chkMaiusMinus.AutoSize = true;
+            this.chkMaiusMinus.Location = new System.Drawing.Point(12, 67);
+            this.chkMaiusMinus.Name = "chkMiusMinus";
+            this.chkMaiusMinus.Size = new System.Drawing.Size(126, 17);
+            this.chkMaiusMinus.TabIndex = 4;
+            this.chkMaiusMinus.Text = "Maiuscole/minuscole";
+            this.chkMaiusMinus.UseVisualStyleBackColor = true;
             // 
             // chkTestoIntorno
             // 
@@ -101,7 +101,7 @@
             this.CancelButton = this.btnAnnulla;
             this.ClientSize = new System.Drawing.Size(361, 112);
             this.Controls.Add(this.chkTestoIntorno);
-            this.Controls.Add(this.chkMiusMinus);
+            this.Controls.Add(this.chkMaiusMinus);
             this.Controls.Add(this.btnAnnulla);
             this.Controls.Add(this.btnTrova);
             this.Controls.Add(this.txtTrova);
@@ -118,7 +118,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblTrova;
-        private System.Windows.Forms.CheckBox chkMiusMinus;
+        private System.Windows.Forms.CheckBox chkMaiusMinus;
         private System.Windows.Forms.CheckBox chkTestoIntorno;
         protected System.Windows.Forms.Button btnAnnulla;
         protected System.Windows.Forms.Button btnTrova;

@@ -28,7 +28,29 @@ namespace Notepad
         /// <returns>La posizione del testo trovato, oppure -1 se non trovato</returns>
         public static int Find()
         {
-            return -1;
+            int start = 0;
+            int end = Target.TextLength;
+            RichTextBoxFinds options = RichTextBoxFinds.None;
+
+            if (Parameters.IsUp)
+            {
+                options = RichTextBoxFinds.Reverse;
+                end = Target.SelectionStart;
+                if (end == 0) return -1;
+            }
+            else
+            {
+                start = Target.SelectionStart + Target.SelectionLength;
+                if (start >= end) return -1;
+            }
+
+            if (Parameters.IsCaseSensive)
+                options |= RichTextBoxFinds.MatchCase;
+            if (Parameters.IsWholeWord)
+                options |= RichTextBoxFinds.WholeWord;
+
+            Target.Focus();
+            return Target.Find(Parameters.TextToFind, start, end, options);
         }
 
         /// <summary>

@@ -74,6 +74,7 @@
             this.rdbSu.TabIndex = 0;
             this.rdbSu.Text = "Su";
             this.rdbSu.UseVisualStyleBackColor = true;
+            this.rdbSu.CheckedChanged += new System.EventHandler(this.rdbSu_CheckedChanged);
             // 
             // FormTrova
             // 
@@ -82,6 +83,7 @@
             this.Controls.Add(this.gbSuGiu);
             this.Name = "FormTrova";
             this.Text = "Trova";
+            this.Load += new System.EventHandler(this.FormTrova_Load);
             this.Controls.SetChildIndex(this.txtTrova, 0);
             this.Controls.SetChildIndex(this.btnTrova, 0);
             this.Controls.SetChildIndex(this.btnAnnulla, 0);

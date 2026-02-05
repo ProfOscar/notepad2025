@@ -14,6 +14,8 @@ namespace Notepad
         private void FormBaseTrovaSostituisci_Load(object sender, EventArgs e)
         {
             txtTrova.Text = FindReplaceService.Parameters.TextToFind;
+            chkMaiusMinus.Checked = FindReplaceService.Parameters.IsCaseSensive;
+            chkTestoIntorno.Checked = FindReplaceService.Parameters.IsWholeWord;
         }
 
         private void txtTrova_TextChanged(object sender, EventArgs e)
@@ -24,6 +26,8 @@ namespace Notepad
         private void btnTrova_Click(object sender, EventArgs e)
         {
             FindReplaceService.Parameters.TextToFind = txtTrova.Text;
+            FindReplaceService.Parameters.IsCaseSensive = chkMaiusMinus.Checked;
+            FindReplaceService.Parameters.IsWholeWord = chkTestoIntorno.Checked;
             if (FindReplaceService.Find() == -1)
                 FindReplaceService.ShowNotFound();
         }
