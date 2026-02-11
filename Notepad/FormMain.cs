@@ -248,12 +248,21 @@ namespace Notepad
 
         private void trovaSuccessivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            doTrovaPrecedenteSuccessivo(false);
         }
 
         private void trovaPrecedenteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            doTrovaPrecedenteSuccessivo(true);
+        }
 
+        private void doTrovaPrecedenteSuccessivo(bool isUp)
+        {
+            bool saveIsUp = FindReplaceService.Parameters.IsUp;
+            FindReplaceService.Parameters.IsUp = isUp;
+            if (FindReplaceService.Find() == -1)
+                FindReplaceService.ShowNotFound();
+            FindReplaceService.Parameters.IsUp = saveIsUp;
         }
 
         private void sostituisciToolStripMenuItem_Click(object sender, EventArgs e)
