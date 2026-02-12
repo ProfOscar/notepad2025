@@ -59,7 +59,10 @@ namespace Notepad
         /// <returns>La posizione del testo sostituito, oppure -1 se non trovato</returns>
         public static int Replace()
         {
-            return -1;
+            StringComparison comparison = Parameters.IsCaseSensive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+            int start = String.Compare(Target.SelectedText, Parameters.TextToFind.ToString(), comparison);
+            if (start == 0) Target.SelectedText = Parameters.TextToReplace;
+            return Find();
         }
 
         /// <summary>

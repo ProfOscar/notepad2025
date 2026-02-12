@@ -74,15 +74,16 @@
             this.btnAnnulla.UseVisualStyleBackColor = true;
             this.btnAnnulla.Click += new System.EventHandler(this.btnAnnulla_Click);
             // 
-            // chkMiusMinus
+            // chkMaiusMinus
             // 
             this.chkMaiusMinus.AutoSize = true;
             this.chkMaiusMinus.Location = new System.Drawing.Point(12, 67);
-            this.chkMaiusMinus.Name = "chkMiusMinus";
+            this.chkMaiusMinus.Name = "chkMaiusMinus";
             this.chkMaiusMinus.Size = new System.Drawing.Size(126, 17);
             this.chkMaiusMinus.TabIndex = 4;
             this.chkMaiusMinus.Text = "Maiuscole/minuscole";
             this.chkMaiusMinus.UseVisualStyleBackColor = true;
+            this.chkMaiusMinus.CheckedChanged += new System.EventHandler(this.chkMaiusMinus_CheckedChanged);
             // 
             // chkTestoIntorno
             // 
@@ -93,6 +94,7 @@
             this.chkTestoIntorno.TabIndex = 5;
             this.chkTestoIntorno.Text = "Testo intorno";
             this.chkTestoIntorno.UseVisualStyleBackColor = true;
+            this.chkTestoIntorno.CheckedChanged += new System.EventHandler(this.chkTestoIntorno_CheckedChanged);
             // 
             // FormBaseTrovaSostituisci
             // 
