@@ -72,10 +72,11 @@ namespace Notepad
         /// <returns>True se ci sono state sostituzioni, altrimenti false</returns>
         public static bool ReplaceAll()
         {
+            string textToFind = Parameters.IsWholeWord ? $@"\b{Parameters.TextToFind}\b" : Parameters.TextToFind;
             RegexOptions options = !Parameters.IsCaseSensive ? RegexOptions.IgnoreCase : RegexOptions.None;
-            if (Regex.IsMatch(Target.Text, Parameters.TextToFind, options))
+            if (Regex.IsMatch(Target.Text, textToFind, options))
             {
-                Target.Text = Regex.Replace(Target.Text, Parameters.TextToFind, Parameters.TextToReplace, options);
+                Target.Text = Regex.Replace(Target.Text, textToFind, Parameters.TextToReplace, options);
                 return true;
             }
             return false;
