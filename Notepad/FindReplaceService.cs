@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Notepad
@@ -71,6 +72,12 @@ namespace Notepad
         /// <returns>True se ci sono state sostituzioni, altrimenti false</returns>
         public static bool ReplaceAll()
         {
+            RegexOptions options = !Parameters.IsCaseSensive ? RegexOptions.IgnoreCase : RegexOptions.None;
+            if (Regex.IsMatch(Target.Text, Parameters.TextToFind, options))
+            {
+                Target.Text = Regex.Replace(Target.Text, Parameters.TextToFind, Parameters.TextToReplace, options);
+                return true;
+            }
             return false;
         }
 
